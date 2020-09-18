@@ -1,0 +1,1 @@
+# GS1-Hack2020-FashionSupplyChain
