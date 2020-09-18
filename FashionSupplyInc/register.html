@@ -1,0 +1,94 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <script type='text/javascript' src='//code.jquery.com/jquery-1.9.1.js'></script>
+  <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+  <link rel="stylesheet" type="text/css" href="https://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css">
+  <script type='text/javascript' src="https://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css"> 
+   <script>
+     $document.ready(function(){
+     });
+     $document.on("pagecontainerbeforechange",function(ev,ui){
+       if (ui.toPage[0].id === "register_screen"){
+           $("#female").attr("checked",true).checkboxradio("refresh");
+       }
+     });
+     function registerUser(){
+       var uname = $("#regusername").val();
+       var pwd = $("#regpassword").val();
+
+       var regObj = {uname:uname,pwd:pwd};
+       localStorage.regData = JSON.stringify(regObj);
+
+       $.mobile.back();
+        
+       }
+
+       function checkLogin(){
+           var regObj = JSON.parse(localStorage.regData);
+           var registeredUname = regObj.uname;
+           var registeredPwd = regObj.pwd;
+           if($("#username").val() === registeredUname && $("#password").val() === registeredPwd){
+
+           }else{
+             
+           }
+       }
+     }
+   </script> 
+  
+
+</head>
+<body>
+<div data-roll="page" id="register_screen">
+    <div data-role="header" data-position="fixed" data-tap-toggle="false">
+        <a href="#" data-icon="back" data-rel="back" class="ui-btn-left">Cancel</a>
+        <h1>Register</h1>
+    </div>
+   <div data-role="main" class="ui-content">
+     <div data-role="fieldcontain">
+       <label for="regusername">Username</label>
+       <input type="text" id="regusername" placeholder="enter username">
+     </div>
+     <div data-role="fieldcontain">
+       <label for="regpassword">Password</label>
+       <input type="text" id="regpassword" placeholder="enter password">
+     </div>
+     <div data-role="fieldcontain">
+        
+          <fieldset data-roll="controlgroup">
+          <legend>Gender</legend>
+          <input type="radio" id="male" name="gender">
+          <label for="male">Male</label>
+          <input type="radio" id="female" name="gender">
+          <label for="female">Female</label>
+          </fieldset>
+         
+     </div>
+     <div data-role="fieldcontain">
+      
+        <fieldset data-roll="controlgroup">
+        <legend>Interested In</legend>
+        <input type="checkbox" id="business" name="interest">
+        <label for="business">Business</label>
+        <input type="checkbox" id="arts" name="interest">
+        <label for="arts">Arts</label>
+        <input type="checkbox" id="travel" name="interest">
+        <label for="travel">Travel</label>
+        <input type="checkbox" id="others" name="interest">
+        <label for="others">Others</label>
+        </fieldset>
+       
+     </div>
+     
+     <div data-role="fieldcontain">
+       <label></label>
+       <a href="javascript:registerUser()" data-role="button">Register</a>
+     </div>
+     <div data-role="footer" data-position="fixed">
+      <h1>Copyrights 2020</h1>
+    </div>
+</div>
+
